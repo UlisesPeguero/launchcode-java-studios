@@ -1,6 +1,7 @@
 package org.launchcode.java.studios.restaurantmenu;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class MenuItem {
     private String shortName;
@@ -22,6 +23,10 @@ public class MenuItem {
 
     public MenuItem(String shortName, float price, String description, MenuItemCategoryEnum category, boolean newItem) {
         this(shortName, new Date(), price, description, category, newItem);
+    }
+
+    public MenuItem(String shortName, float price, String description, MenuItemCategoryEnum category) {
+        this(shortName, new Date(), price, description, category, true);
     }
 
     public void setShortName(String shortName) {
@@ -80,5 +85,10 @@ public class MenuItem {
                 "Description:   " + description + "\n" +
                 "Category:      " + category.getValue() + "\n" +
                 "Is a new item: " + newItem + "\n";
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(shortName, price, description);
     }
 }
